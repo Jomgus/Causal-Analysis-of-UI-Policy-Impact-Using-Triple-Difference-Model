@@ -14,6 +14,6 @@ Our analysis reveals a significant differential impact of the policy, proving th
 
 Other-Wage Workers (Significant Effect): For the "Other-Wage" group, terminating benefits worked as expected. It caused a 4.7 percentage point increase in their job-finding (U-to-E) rate (p=0.052).
 
-Low-Wage Workers (No Effect): For our target "Low-Wage" group (defined as Leisure & Hospitality + Retail.source[82-85]`]), the policy had no statistically significant effect on their job-finding rate (p=0.470).
+Low-Wage Workers (No Effect): For our target "Low-Wage" group (defined as Leisure & Hospitality + Retail), the policy had no statistically significant effect on their job-finding rate (p=0.470).
 
 The Causal "Gap" (Significant DDD): Our main Triple-Difference model, which directly compares these two effects, confirms that this gap is statistically significant. The TreatState*Post*LowWage interaction coefficient was -0.080 (p=0.035), providing robust evidence that the policy's impact on low-wage workers was statistically different from its impact on everyone else.
