@@ -7,8 +7,7 @@ Checks:
 3) Staggered-adoption proxy (stacked cohort DiD)
 4) State-specific linear trends
 5) Alternative low-wage definitions (industry vs income proxy)
-6) Randomization-inference p-value (state-level reassignment)
-7) Multi-year placebo (2018, 2019) + placebo policy date
+6) Multi-year placebo (2018, 2019) + placebo policy date
 """
 
 from __future__ import annotations
@@ -202,20 +201,9 @@ def build_panel(
 
 
 def fit_main(df: pd.DataFrame, with_state_trends: bool = False) -> FitResult:
-    if df.empty or df["MONTH"].nunique() < 2 or df["STATEFIP"].nunique() < 2:
+    fit = fit_main_model(df, with_state_trends=with_state_trends)
+    if fit is None:
         return FitResult(np.nan, np.nan, np.nan, 0)
-    parts = [
-        "found_job ~ TreatState * Post * LowWage",
-        "log_monthly_cases",
-        "avg_stringency",
-        "C(STATEFIP)",
-        "C(MONTH)",
-    ]
-    if with_state_trends:
-        parts.append("C(STATEFIP):t")
-    fit = smf.wls(" + ".join(parts), data=df, weights=df["LNKFW1MWT"]).fit(
-        cov_type="cluster", cov_kwds={"groups": df["STATEFIP"]}
-    )
     term = "TreatState:Post:LowWage"
     return FitResult(
         coef=float(fit.params.get(term, np.nan)),
@@ -225,22 +213,32 @@ def fit_main(df: pd.DataFrame, with_state_trends: bool = False) -> FitResult:
     )
 
 
-def randomization_inference(df: pd.DataFrame, draws: int = 250, seed: int = 42) -> float:
-    rng = np.random.default_rng(seed)
-    states = np.sort(df["STATEFIP"].unique())
-    treated_states = set(df.loc[df["TreatState"] == 1, "STATEFIP"].unique())
-    n_treat = len(treated_states)
-    if n_treat == 0:
-        return np.nan
-    obs = abs(fit_main(df).coef)
-    sim = []
-    for _ in range(draws):
-        fake = set(rng.choice(states, size=n_treat, replace=False).tolist())
-        d = df.copy()
-        d["TreatState"] = d["STATEFIP"].isin(fake).astype(int)
-        sim.append(abs(fit_main(d).coef))
-    sim = np.array(sim)
-    return float((np.sum(sim >= obs) + 1) / (len(sim) + 1))
+def build_main_formula(with_state_trends: bool = False, include_triple: bool = True) -> str:
+    if include_triple:
+        base = "found_job ~ TreatState * Post * LowWage"
+    else:
+        base = (
+            "found_job ~ TreatState + Post + LowWage + "
+            "TreatState:Post + TreatState:LowWage + Post:LowWage"
+        )
+    parts = [
+        base,
+        "log_monthly_cases",
+        "avg_stringency",
+        "C(STATEFIP)",
+        "C(MONTH)",
+    ]
+    if with_state_trends:
+        parts.append("C(STATEFIP):t")
+    return " + ".join(parts)
+
+
+def fit_main_model(df: pd.DataFrame, with_state_trends: bool = False):
+    if df.empty or df["MONTH"].nunique() < 2 or df["STATEFIP"].nunique() < 2:
+        return None
+    formula = build_main_formula(with_state_trends=with_state_trends, include_triple=True)
+    model = smf.wls(formula, data=df, weights=df["LNKFW1MWT"])
+    return model.fit(cov_type="cluster", cov_kwds={"groups": df["STATEFIP"]})
 
 
 def stacked_cohort_proxy(df: pd.DataFrame) -> FitResult:
@@ -407,25 +405,15 @@ def main() -> None:
             extra="pending: income extract lacks valid 2018-2021 linked monthly weights",
         )
 
-    # 6) Randomization inference
-    ri_p = randomization_inference(p_state, draws=250, seed=42)
-    add_row(
-        rows,
-        "6_randomization_inference",
-        "state_reassignment_250draws",
-        fit_main(p_state),
-        extra=f"ri_p={ri_p:.4f}",
-    )
-
-    # 7) Placebo years and placebo policy month
+    # 6) Placebo years and placebo policy month
     p_2018 = build_panel(trans_adj, treat_dates, m_covid, m_str, 2018, "common_july", "LowWage_ind")
     p_2019 = build_panel(trans_adj, treat_dates, m_covid, m_str, 2019, "common_july", "LowWage_ind")
     p_2021_placebo_date = build_panel(
         trans_adj, treat_dates, m_covid, m_str, 2021, "common_july", "LowWage_ind", placebo_policy_month=5
     )
-    add_row(rows, "7_placebo", "year_2018", fit_main(p_2018))
-    add_row(rows, "7_placebo", "year_2019", fit_main(p_2019))
-    add_row(rows, "7_placebo", "fake_policy_month_may_2021", fit_main(p_2021_placebo_date))
+    add_row(rows, "6_placebo", "year_2018", fit_main(p_2018))
+    add_row(rows, "6_placebo", "year_2019", fit_main(p_2019))
+    add_row(rows, "6_placebo", "fake_policy_month_may_2021", fit_main(p_2021_placebo_date))
 
     out = pd.DataFrame(rows)
     out.to_csv(OUT / "robustness_checks.csv", index=False)
@@ -452,7 +440,7 @@ def main() -> None:
         "## Interpretation Guide",
         "",
         "- Main term is `TreatState x Post x LowWage`.",
-        "- More stable inference means direction/significance persists across checks.",
+        "- More stable results mean direction/significance persists across checks.",
         "- Placebo rows should ideally be near zero and not significant.",
     ]
     (OUT / "summary.md").write_text("\n".join(lines) + "\n")
