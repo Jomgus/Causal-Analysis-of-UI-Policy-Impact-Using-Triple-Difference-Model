@@ -1,3 +1,5 @@
+![UTA Data Science Logo](UTA-DataScience-Logo.png)
+
 # Causal Analysis of UI Policy Impact Using a Triple-Difference Model
 
 ## Business Problem / Motivation
