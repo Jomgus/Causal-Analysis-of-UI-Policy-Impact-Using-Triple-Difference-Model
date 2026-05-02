@@ -1,0 +1,13 @@
+year,sample,treatment_mode,employment_mode,control_spec,bundle,subgroup,obs,coef,stderr,pval
+2021,all_ages,june_only,any_employed,covid_stringency,analysis_diagnostics,other_wage,8917,0.059120267936196805,0.018820372281274478,0.001682047562123405
+2021,all_ages,june_only,any_employed,covid_stringency,analysis_diagnostics,low_wage,3703,-0.036818401620914966,0.03066001093156285,0.2298052483670051
+2018,prime_age,june_only,any_employed,covid_stringency,placebo_diagnostics,other_wage,4484,0.00028398666098156805,0.036460322471654615,0.9937854010649269
+2018,prime_age,june_only,any_employed,covid_stringency,placebo_diagnostics,low_wage,1453,0.21054314018074388,0.07319085004676015,0.004019440644275296
+2021,all_ages,june_only,at_work_only,covid_stringency,analysis_diagnostics,other_wage,8917,0.04861116894429905,0.026939330788501185,0.07115792133118448
+2021,all_ages,june_only,at_work_only,covid_stringency,analysis_diagnostics,low_wage,3703,-0.017937121538600196,0.03145551540817876,0.5685164725023237
+2018,prime_age,june_only,at_work_only,covid_stringency,placebo_diagnostics,other_wage,4484,0.026999698155934282,0.03666316053668894,0.4614715945325245
+2018,prime_age,june_only,at_work_only,covid_stringency,placebo_diagnostics,low_wage,1453,0.18658958365281325,0.06047399424168325,0.002032432844092727
+2021,all_ages,all_early_exits,any_employed,covid_stringency,analysis_diagnostics,other_wage,8917,0.041942072883972795,0.026668706170667265,0.11578657393134825
+2021,all_ages,all_early_exits,any_employed,covid_stringency,analysis_diagnostics,low_wage,3703,-0.05449078018263996,0.03286970964252029,0.09736167727062763
+2021,all_ages,all_early_exits,at_work_only,covid_stringency,analysis_diagnostics,other_wage,8917,0.03721287033301027,0.029276511205881935,0.20369918761259798
+2021,all_ages,all_early_exits,at_work_only,covid_stringency,analysis_diagnostics,low_wage,3703,-0.041758650182796106,0.0342504023566152,0.22276209194780783

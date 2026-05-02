@@ -13,7 +13,7 @@ sys.path.insert(0, str(SCRIPT_DIR))
 import main_claim_robustness_suite as core
 
 
-OUT = Path("/Users/jomus/Code/capstone/data/outputs/main_robustness_suite")
+OUT = Path("/Users/jomus/Code/capstone/evidence/main_claim")
 
 
 def apply_slice(df: pd.DataFrame, name: str) -> pd.DataFrame:

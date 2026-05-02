@@ -1,0 +1,46 @@
+year,empstat,label,count
+all,0,NIU,976534
+all,1,Armed Forces,18690
+all,10,At work,2465301
+all,12,"Has job, not at work last week",98369
+all,21,"Unemployed, experienced worker",120355
+all,22,"Unemployed, new worker",8890
+all,32,"NILF, unable to work",230534
+all,34,"NILF, other",615327
+all,36,"NILF, retired",923780
+2018,0,NIU,272108
+2018,1,Armed Forces,5185
+2018,10,At work,681719
+2018,12,"Has job, not at work last week",25259
+2018,21,"Unemployed, experienced worker",25175
+2018,22,"Unemployed, new worker",2592
+2018,32,"NILF, unable to work",65167
+2018,34,"NILF, other",166237
+2018,36,"NILF, retired",236722
+2019,0,NIU,256061
+2019,1,Armed Forces,4801
+2019,10,At work,661773
+2019,12,"Has job, not at work last week",24023
+2019,21,"Unemployed, experienced worker",22959
+2019,22,"Unemployed, new worker",2512
+2019,32,"NILF, unable to work",61633
+2019,34,"NILF, other",156405
+2019,36,"NILF, retired",233896
+2020,0,NIU,223289
+2020,1,Armed Forces,4296
+2020,10,At work,551869
+2020,12,"Has job, not at work last week",25881
+2020,21,"Unemployed, experienced worker",43048
+2020,22,"Unemployed, new worker",1900
+2020,32,"NILF, unable to work",51505
+2020,34,"NILF, other",147224
+2020,36,"NILF, retired",224463
+2021,0,NIU,225076
+2021,1,Armed Forces,4408
+2021,10,At work,569940
+2021,12,"Has job, not at work last week",23206
+2021,21,"Unemployed, experienced worker",29173
+2021,22,"Unemployed, new worker",1886
+2021,32,"NILF, unable to work",52229
+2021,34,"NILF, other",145461
+2021,36,"NILF, retired",228699

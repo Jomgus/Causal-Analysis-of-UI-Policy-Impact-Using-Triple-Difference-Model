@@ -19,7 +19,7 @@ import statsmodels.formula.api as smf
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PANEL_PATH = REPO_ROOT / "twfe_panel_county_data.csv"
 COVAR_PATH = REPO_ROOT / "data" / "processed" / "county_hdpulse_covariates_2019_2023.csv"
-OUTPUT_DIR = REPO_ROOT / "data" / "outputs" / "county_aside"
+OUTPUT_DIR = REPO_ROOT / "evidence" / "county_support"
 
 COVARIATES = [
     "median_household_income_usd",

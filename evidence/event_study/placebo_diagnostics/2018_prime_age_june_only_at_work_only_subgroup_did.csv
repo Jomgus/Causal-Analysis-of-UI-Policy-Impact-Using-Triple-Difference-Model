@@ -1,0 +1,3 @@
+year,sample,treatment_mode,employment_mode,control_spec,bundle,subgroup,obs,coef,stderr,pval
+2018,prime_age,june_only,at_work_only,covid_stringency,placebo_diagnostics,other_wage,4484,0.026999698155934282,0.03666316053668894,0.4614715945325245
+2018,prime_age,june_only,at_work_only,covid_stringency,placebo_diagnostics,low_wage,1453,0.18658958365281325,0.06047399424168325,0.002032432844092727

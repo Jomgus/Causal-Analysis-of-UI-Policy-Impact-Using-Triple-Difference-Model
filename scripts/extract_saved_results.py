@@ -13,36 +13,16 @@ from pathlib import Path
 NOTEBOOKS = OrderedDict(
     [
         (
-            "notebooks/SignificanceHolzerStyle.ipynb",
+            "analysis/main/SignificanceHolzerStyle.ipynb",
             "Recommended primary notebook: strongest saved DDD, placebo, and leave-one-state-out outputs.",
         ),
         (
-            "archive/notebooks/SignificanceHolzerStyle.ipynb",
-            "Root-level variant with overlapping DDD results and similar event-study logic.",
-        ),
-        (
-            "baseline_model.ipynb",
+            "analysis/reference/baseline_model.ipynb",
             "Baseline TWFE reference notebook.",
         ),
         (
-            "archive/notebooks/FirstValidTimeFrame.ipynb",
-            "Exploratory sensitivity notebook with many alternative specifications.",
-        ),
-        (
-            "archive/notebooks/Significant.ipynb",
-            "Large exploratory robustness notebook.",
-        ),
-        (
-            "archive/notebooks/SignificantBADTIMEFRAME.ipynb",
-            "Exploratory variant with a problematic timeframe, based on filename and notebook role.",
-        ),
-        (
-            "archive/notebooks/BAD_BASELINE.ipynb",
-            "County TWFE notebook with weak saved baseline output.",
-        ),
-        (
-            "archive/notebooks/Untitled-2.ipynb",
-            "Scratch or intermediate exploratory notebook.",
+            "analysis/supporting/county_hdpulse_covariates.ipynb",
+            "Supporting county-side notebook.",
         ),
     ]
 )
@@ -230,7 +210,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--output",
-        default="data/outputs/research_snapshot.md",
+        default="evidence/research_snapshot.md",
         help="Path to the Markdown output file.",
     )
     return parser.parse_args()

@@ -1,0 +1,3 @@
+year,sample,treatment_mode,employment_mode,control_spec,bundle,subgroup,obs,coef,stderr,pval
+2021,all_ages,all_early_exits,any_employed,covid_stringency,analysis_diagnostics,other_wage,8917,0.041942072883972795,0.026668706170667265,0.11578657393134825
+2021,all_ages,all_early_exits,any_employed,covid_stringency,analysis_diagnostics,low_wage,3703,-0.05449078018263996,0.03286970964252029,0.09736167727062763

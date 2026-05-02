@@ -2,7 +2,7 @@
 
 This script intentionally does not require a literal wage variable. It uses the
 same industry-based low-wage proxy already used in
-`notebooks/SignificanceHolzerStyle.ipynb`, then layers on robustness checks that
+`analysis/main/SignificanceHolzerStyle.ipynb`, then layers on robustness checks that
 are closer to Holzer et al.'s style:
 
 - with/without COVID and stringency controls
@@ -10,7 +10,7 @@ are closer to Holzer et al.'s style:
 - separate subgroup 2x2 DiD models
 - subgroup event studies for low-wage and other-wage groups
 
-Outputs are written to `data/outputs/holzer_style_robustness/` by default.
+Outputs are written to `evidence/event_study/` by default.
 """
 
 from __future__ import annotations
@@ -141,7 +141,7 @@ EMPLOYMENT_MODES = ["any_employed", "at_work_only"]
 def parse_args() -> argparse.Namespace:
     repo_root = REPO_ROOT
     default_data = repo_root / "data" / "raw"
-    default_output = repo_root / "data" / "outputs" / "holzer_style_robustness"
+    default_output = repo_root / "evidence" / "event_study"
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--cps-path", default=str(default_data / "cps_00006.csv"))

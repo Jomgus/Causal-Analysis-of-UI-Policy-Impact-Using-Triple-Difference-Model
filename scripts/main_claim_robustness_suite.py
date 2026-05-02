@@ -23,7 +23,7 @@ import statsmodels.formula.api as smf
 
 REPO = Path(__file__).resolve().parents[1]
 RAW = REPO / "data" / "raw"
-OUT = REPO / "data" / "outputs" / "main_robustness_suite"
+OUT = REPO / "evidence" / "main_claim"
 
 CPS_PATH = RAW / "cps_00006.csv"
 CPS_INCOME_PATH = RAW / "cps_income_extension.csv"
